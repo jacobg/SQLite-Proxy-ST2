@@ -1,5 +1,4 @@
 
-
 /**
  * @author Simon Shepherd
  *
@@ -395,15 +394,15 @@ Ext.define('Sqlite.data.proxy.SqliteStorage', {
         sql += ' `' + filter.getProperty() + '`';
         
         // now: do we use like or =?
-        if(fieldTypes[filter.getProperty()] == 'STRING' &&
+        if(fieldTypes[filter.getProperty()] == 'TEXT' &&
         !filter.getCaseSensitive()) sql += ' LIKE';
         else sql += ' =';
         
         // need to surround with %?
         if(!filter.getExactMatch() &&
-        fieldTypes[filter.getProperty()] == 'STRING') {
+        fieldTypes[filter.getProperty()] == 'TEXT') {
           sql += " '%" + filter.getValue() + "%'";
-        } else if(fieldTypes[filter.getProperty()] == 'STRING') {
+        } else if(fieldTypes[filter.getProperty()] == 'TEXT') {
           sql += " '" + filter.getValue() + "'";
         } else if(fieldTypes[filter.getProperty()] == 'boolean') {
           if(filter.getValue()) {
